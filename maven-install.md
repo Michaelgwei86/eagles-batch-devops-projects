@@ -2,38 +2,70 @@ The following are instructions for installing Apache Maven and Java 8 on an Amaz
 
 ## Steps To Install Apache Maven and Java 8 on your EC2 instance
 
-1. Connect to your Amazon EC2 instance with an SSH client.
+1. Setup and connect to an Amazon EC2 linux2 instance with an SSH client. Note-Do not select the amazon 2023 instance. Choose the linux2 ami instead. 
 
 2. Install Apache Maven on your EC2 instance. First, enter the following to add a repository with a Maven package.
 
-    ``sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo``
+    ```
+    sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+    ```
 
 - Enter the following to set the version number for the packages.
 
-    `sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo`
+    ```
+    sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+    ```
 - Then you can use yum to install Maven.
 
-    `sudo yum install -y apache-maven`
+    ```
+    sudo yum install -y apache-maven
+    ```
 3. The Gremlin libraries require Java 8. Enter the following to install Java 8 on your EC2 instance.
 
-    `sudo yum install java-1.8.0-devel`
-4. Enter the following to set Java 8 as the default runtime on your EC2 instance.
+    ```
+    sudo yum install java-1.8.0-devel -y
+    ```
+4. Install Java11 for SonarQube
+   ```
+   sudo amazon-linux-extras install java-openjdk11
+   ```
+   or
+   
+   ```
+   sudo dnf install java-11-amazon-corretto -y
+   ```
+6. Enter the following to set Java 8 as the default runtime on your EC2 instance.
 
-    `sudo /usr/sbin/alternatives --config java`
-- When prompted, enter the number for Java 8.
+    ```
+    sudo /usr/sbin/alternatives --config java
+    ```
+- When prompted, enter the number `4` for Java 11.
 
 5. Enter the following to set Java 8 as the default compiler on your EC2 instance.
 
-    `sudo /usr/sbin/alternatives --config javac`
-- When prompted, enter the number for Java 8.
+    ```
+    sudo /usr/sbin/alternatives --config javac
+    ```
+- When prompted, enter the number `2` for Javac maven compiler.
+- Make sure to review this config if `mvn compile` breaks
 
 6. Verify your maven version
-    `mvn -v`
+    ```
+    mvn -v
+    ```
 
+### Install Git
+```
+sudo yum install git -y
+```
 ### Project Preparation
 7. Create the `.m2` directory in the home directory of your current user
-    `mkdir ~/.m2`
+    ```
+    mkdir ~/.m2
+    ```
 
 8. Create the Settings file inside of the `~/.m2` directory
-    `cd ~/.m2/`
-    `mv demo/settings.xml ~/.m2/`
+    ```
+    cd ~/.m2/
+    mv demo/settings.xml ~/.m2/
+    ```
