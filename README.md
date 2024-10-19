@@ -1,6 +1,6 @@
 # Install Prometheus
-- Create an ec2 instance with Ubuntu 20.04 ami and t2.micro instance-type, allow inbond traffic on 9090 **(default port for prometheus)**
-- Create two ec2 instance  for use as **app servers** with Ubuntu 20.04 ami and t2.micro instance-type, allow inbond traffic on 9100
+- Create an ec2 instance with Ubuntu 22.04 ami and t2.micro instance-type, allow inbond traffic on 9090 **(default port for prometheus)**
+- Create two ec2 instance  for use as **app servers** with Ubuntu 22.04 ami and t2.micro instance-type, allow inbond traffic on 9100
 - ssh into prometheus server 
 - install git by running 
   ```
@@ -8,11 +8,15 @@
   ```
 - clone prometheus repo from within server 
 ```
-git clone https://github.com/anselmenumbisia/maven-sonarqube-nexus-project.git
+git clone https://github.com/Michaelgwei86/eagles-batch-devops-projects.git
 ```
-- then navigate to th e prometheus folder by running
+- then navigate to the prometheus folder by running
 ```
-cd /home/ubuntu/maven-sonarqube-nexus-project/prometheus
+cd /home/ubuntu/eagles-batch-devops-projects
+```
+- Checkout to the prometheus-and-grafana branch
+```
+git checkout prometheus-and-grafana
 ```
 - install prometheus by running 
   ```
@@ -37,7 +41,7 @@ cd /home/ubuntu/maven-sonarqube-nexus-project/prometheus
   ```
   - clone prometheus repo from within server 
   ```
-   git clone https://github.com/anselmenumbisia/maven-sonarqube-nexus-project.git
+   git clone https://github.com/Michaelgwei86/eagles-batch-devops-projects.git
   ```
   - then navigate to th e prometheus folder by running
   ```
